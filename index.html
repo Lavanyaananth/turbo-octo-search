@@ -2,15 +2,17 @@
     <head>
         <title>Wikipedia viewer</title>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Slabo+13px&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
         <script src= "main.js"></script>
     </head>
     <body>
         <div class="container">
             <div class="items">
-                <form>
-                    <input type = "input" placeholder="Enter your search term.." id="wiki-search-field"> 
-                    <button type="submit" class="search-submit">Search</button>
+                <h4 class="header"> TURBO SEARCH</h4>
+                <form onsubmit = "executeQuery()">
+                    <input type = "input" placeholder="Enter your input term.." id="wiki-search-field" required> 
+                    <button type="submit"  id="foo" class="search-submit">Load Wiki results</button>
                     <a href="https://en.wikipedia.org/wiki/Special:Random" target="_new" class="random-search">Get random Article</a>
                 </form>
             </div>

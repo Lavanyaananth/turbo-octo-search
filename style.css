@@ -23,6 +23,10 @@ body {
     flex-direction: column;
     align-items: center;
 }
+.header{
+   font-family: 'Slabo 13px', serif;
+   font-size: 30px;
+}
 #wiki-search-field{
     margin: 20px;
     height: 60px;
@@ -52,6 +56,9 @@ body {
 }
 .random-search:hover{
     text-decoration: underline;
+}
+input::placeholder{
+    font-size: 15px;
 }
 footer{
     position : fixed;
