@@ -1,16 +1,41 @@
+/* getting elements from form */
+let searchField = document.querySelector("#serach-field");
+let searchButton = document.querySelector("#search-btn");
+const form = document.querySelector("#wiki-search");
 
-    let xhr = new XMLHttpRequest;
-    xhr.open ('GET','https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=modi' , true);
-    xhr.onload = function() 
-    {
-        //check if the status is 200
-        if (this.status === 200) 
-            {
-                //return server response as an object 
-                console.log(JSON.parse(this.responseText));
-    }
-            }
-    //call send
-    xhr.send();
+/* Add event listeners to form */
+form.addEventListener("submit", handleSubmit);
+
+/* prevent page from reloading before form is submitted */
+function handleSubmit(event){
+    event.preventDefault();
+
+    /* fetch input term */
+    const input = document.querySelector("#search-field").value;
+    console.log(input);
+
+    const query = input.trim();
+
+    fetchResults(query);
+}
+
+/* fetching results */
+function fetchResults(query){
+    const endpoint = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${query}`;
+  
+    fetch(endpoint)
+    .then(response => response.json())
+    .then(data => {
+        const results = data.query;
+        console.log(results);
+      })
+    
+    .catch(() => console.log("An error occurred."));
+
+}
+
+
+
+
 
 

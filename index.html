@@ -4,22 +4,23 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Slabo+13px&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
-        <script src= "main.js"></script>
+       
     </head>
     <body>
         <div class="container">
             <div class="items">
                 <h4 class="header"> TURBO SEARCH</h4>
-                <form onsubmit = "executeQuery()">
-                    <input type = "input" placeholder="Enter your input term.." id="wiki-search-field" required> 
-                    <button type="submit"  id="foo" class="search-submit">Load Wiki results</button>
-                    <a href="https://en.wikipedia.org/wiki/Special:Random" target="_new" class="random-search">Get random Article</a>
+                <form id="wiki-search">
+                    <input type = "text" placeholder="Enter your input term.." id="search-field"  required> 
+                    <button type="submit"  id="foo" class="submit-btn" onclick="fetchResults()">Load Wiki results</button>
+                    <a href="https://en.wikipedia.org/wiki/Special:Random" target="_new" class="random-search">I'm feeling lucky</a>
                 </form>
             </div>
             <footer>
-                <p>©Copyright 2050 by nobody. All rights reversed.</p>
+                <p>©Copyright 2050 by nobody. All rights reserved.</p>
             </footer>
         </div>
         
     </body>
 </html>
+<script src= "main.js"></script>
