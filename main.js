@@ -1,6 +1,4 @@
-/* getting elements from form */
-let searchField = document.querySelector("#serach-field");
-let searchButton = document.querySelector("#search-btn");
+/* getting form */
 const form = document.querySelector("#wiki-search");
 
 /* Add event listeners to form */
@@ -12,26 +10,42 @@ function handleSubmit(event){
 
     /* fetch input term */
     const input = document.querySelector("#search-field").value;
-    console.log(input);
-
     const query = input.trim();
-
     fetchResults(query);
 }
 
 /* fetching results */
 function fetchResults(query){
     const endpoint = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${query}`;
-  
     fetch(endpoint)
     .then(response => response.json())
     .then(data => {
-        const results = data.query;
+        const results = data.query.search;
         console.log(results);
+        displayResults(results);
       })
     
-    .catch(() => console.log("An error occurred."));
+}
 
+/* display results */
+function displayResults(results){
+    const searchResults = document.querySelector(".results");
+    /* Remove all child elements*/
+    searchResults.innerHTML = '';
+
+    /*Looping over search results*/
+    results.forEach(result => {
+        const url = encodeURI(`https://en.wikipedia.org/wiki/${result.title}`);
+        searchResults.insertAdjacentHTML("beforeend",
+            `<div class="result-item">
+                <h3 class="result-title">    
+                    <a href="${url}" target="_blank" rel="noopener">${result.title}</a>
+                </h3>
+                <a class="suburl" href="${url}" target="_blank" rel="noopener">${url}</a>
+                <span class="result-snippet">${result.snippet}</span><br>
+            </div>`
+        );
+    });
 }
 
 
